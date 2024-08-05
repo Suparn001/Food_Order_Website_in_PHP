@@ -24,6 +24,20 @@
   clear: both;
 }
 
+.tbl-full{
+  width: 100%;
+}
+
+table tr th{
+  border-bottom:1px solid black;
+  text-align: left;
+  padding: 1%;
+}
+
+table tr td{
+  
+  padding: 1%;
+}
 .menu ul li a {
   text-decoration: none;
   font-weight: bold;
