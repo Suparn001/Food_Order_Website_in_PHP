@@ -3,7 +3,7 @@
     <div class="wrapper">
         <h1>Manage Admin</h1>
         <br />
-<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
         <br /><br /> <br />
         <table class="table table-hover table-bordered table-striped">
             <thead>
@@ -17,23 +17,26 @@
             </thead>
             <tbody>
                 <?php
-                $SrNo =1;
+                $SrNo = 1;
                 $sql = "SELECT * FROM `food_order`.`admin`";
+                $id = $row['id'];
                 $result = mysqli_query($con, $sql);
                 $rows = mysqli_num_rows($result);
-                if ($rows> 0) {
+                if($rows > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                         <tr>
                             <td><?php echo $SrNo++ ?></td>
                             <td><?php echo $row['full_name'] ?></td>
                             <td><?php echo $row['user_name'] ?></td>
-                            <td><a href="#" class="btn btn-success">Update Admin</a></td>
-                            <td><a href="#" class="btn btn-danger">Delete Admin</a></td>
+                            <td><a href="update_admin.php?id= <?php echo $row['id'] ?>" class="btn btn-success">Update Admin</a></td>
+                            <td><a href="delete_admin.php?id= <?php echo $row['id'] ?>" class="btn btn-danger">Delete Admin</a></td>
+
                         </tr>
                 <?php
                     }
                 }
+                
                 ?>
             </tbody>
         </table>
@@ -88,10 +91,10 @@ if (isset($_POST['add_admin'])) {
     $sql = "INSERT INTO `food_order`.`admin`(`full_name`,`user_name`,`password`) VALUES ('$fullName','$username','$password')";
     $result = mysqli_query($con, $sql);
     if ($result == true) {
-        header('location:manage_admin.php?mesage=Successfully%entered%data');
+        header('location:manage_admin.php');
         $_SESSION['add'] = "Admin Added Successfully";
     } else {
-        header('location:manage_admin.php?mesage=Something%went%wrong');
+        header('location:manage_admin.php');
         echo "Something went wrong";
     }
 }
