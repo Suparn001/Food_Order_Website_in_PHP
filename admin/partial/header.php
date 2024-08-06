@@ -23,3 +23,7 @@
         </div>
     </div>
     <!-- Menu section ends -->
+     <!-- importing the database -->
+<?php include('/var/www/html/project/food_order/connection.php'); 
+ob_start();
+?>

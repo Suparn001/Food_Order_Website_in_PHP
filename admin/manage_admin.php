@@ -1,63 +1,107 @@
-<?php include('C:\xampp\htdocs\food_delivery\Food_Order_Website_in_PHP\admin\partial\header.php') ?>
-
+<?php include('/var/www/html/project/food_order/admin/partial/header.php'); ?>
 <div class="main">
     <div class="wrapper">
         <h1>Manage Admin</h1>
-<table class="tbl-full">
-    <tr>
-        <th>Sr. No.</th>
-        <th>Full Name</th>
-        <th>Username</th>
-        <th>Action</th>
-    </tr>
-
-    <tr>
-        <td>1.</td>
-        <td>SUPARN GAUTAM</td>
-        <td>suparngautam</td>
-        <td>
-        <button class="btn btn-success">Update Admin</button>
-        <button class="btn btn-danger">Delete Admin</button>
-        </td>
-    </tr>
-
-    <tr>
-        <td>2.</td>
-        <td>Sh. Bal Krishan GAUTAM</td>
-        <td>balgautam</td>
-        <td>
-        <button class="btn btn-success">Update Admin</button>
-        <button class="btn btn-danger">Delete Admin</button>
-        </td>
-    </tr>
-     
-    <tr>
-        <td>3.</td>
-        <td>Sh. Lalit GAUTAM</td>
-        <td>laitgautam</td>
-        <td>
-        <button class="btn btn-success">Update Admin</button>
-        <button class="btn btn-danger">Delete Admin</button>
-        </td>
-    </tr>
-
-    <tr>
-        <td>4.</td>
-        <td>Sh. Arvind GAUTAM</td>
-        <td>arvindgautam</td>
-        <td>
-         <button class="btn btn-success">Update Admin</button>
-         <button class="btn btn-danger">Delete Admin</button>   
-            
-        </td>
-    </tr>
-</table>
+        <br />
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
+        <br /><br /> <br />
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $SrNo =1;
+                $sql = "SELECT * FROM `food_order`.`admin`";
+                $result = mysqli_query($con, $sql);
+                $rows = mysqli_num_rows($result);
+                if ($rows> 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <tr>
+                            <td><?php echo $SrNo++ ?></td>
+                            <td><?php echo $row['full_name'] ?></td>
+                            <td><?php echo $row['user_name'] ?></td>
+                            <td><a href="#" class="btn btn-success">Update Admin</a></td>
+                            <td><a href="#" class="btn btn-danger">Delete Admin</a></td>
+                        </tr>
+                <?php
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
     <div class="clearfix"></div>
-
-</div>
-
-
-
-
-<?php include('C:\xampp\htdocs\food_delivery\Food_Order_Website_in_PHP\admin\partial\footer.php') ?>
+</div><br>
+<?php
+if (isset($_SESSION['add'])) {
+    echo "<div id='session-message'>{$_SESSION['add']}</div><br>";
+    unset($_SESSION['add']);
+}
+?>
+<form action="manage_admin.php" method="post">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Admin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="full_name">Enter Your Full Name</label>
+                        <input type="text" name="full_name" class="form-control" id="full_name" placeholder="Enter Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_name">Enter User Name</label>
+                        <input type="text" name="user_name" class="form-control" id="user_name" placeholder="Enter User Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Enter Your Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-success" name="add_admin" value="ADD">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<?php
+// update the data from add admin form to database
+// check whether the submit button is clicked or not
+if (isset($_POST['add_admin'])) {
+    // button clicked
+    $fullName = $_POST['full_name'];
+    $username = $_POST['user_name'];
+    $password = md5($_POST['password']); // password encryption with md5
+    // sql query to save data to databse from this add admin form
+    $sql = "INSERT INTO `food_order`.`admin`(`full_name`,`user_name`,`password`) VALUES ('$fullName','$username','$password')";
+    $result = mysqli_query($con, $sql);
+    if ($result == true) {
+        header('location:manage_admin.php?mesage=Successfully%entered%data');
+        $_SESSION['add'] = "Admin Added Successfully";
+    } else {
+        header('location:manage_admin.php?mesage=Something%went%wrong');
+        echo "Something went wrong";
+    }
+}
+?>
+<?php include('/var/www/html/project/food_order/admin/partial/footer.php') ?>
+<script>
+    setTimeout(function() {
+        var message = document.getElementById('session-message');
+        if (message) {
+            message.style.display = 'none';
+        }
+    }, 3000);
+</script>

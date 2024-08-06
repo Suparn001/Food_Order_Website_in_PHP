@@ -1,9 +1,62 @@
-<?php include('C:\xampp\htdocs\food_delivery\Food_Order_Website_in_PHP\admin\partial\header.php') ?>
+<?php include('/var/www/html/project/food_order/admin/partial/header.php') ?>
 
 <div class="main">
     <div class="wrapper">
         <h1>Manage Food</h1>
+        <br />
+        <a href="#" class="btn btn-primary">Add Food</a> 
+        <br /><br /> <br />
 
+
+<table class="tbl-full">
+    <tr>
+        <th>Sr. No.</th>
+        <th>Full Name</th>
+        <th>Username</th>
+        <th>Action</th>
+    </tr>
+
+    <tr>
+        <td>1.</td>
+        <td>SUPARN GAUTAM</td>
+        <td>suparngautam</td>
+        <td>
+        <button class="btn btn-success">Update Admin</button>
+        <button class="btn btn-danger">Delete Admin</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>2.</td>
+        <td>Sh. Bal Krishan GAUTAM</td>
+        <td>balgautam</td>
+        <td>
+        <button class="btn btn-success">Update Admin</button>
+        <button class="btn btn-danger">Delete Admin</button>
+        </td>
+    </tr>
+     
+    <tr>
+        <td>3.</td>
+        <td>Sh. Lalit GAUTAM</td>
+        <td>laitgautam</td>
+        <td>
+        <button class="btn btn-success">Update Admin</button>
+        <button class="btn btn-danger">Delete Admin</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>4.</td>
+        <td>Sh. Arvind GAUTAM</td>
+        <td>arvindgautam</td>
+        <td>
+         <button class="btn btn-success">Update Admin</button>
+         <button class="btn btn-danger">Delete Admin</button>   
+            
+        </td>
+    </tr>
+</table>
     </div>
     <div class="clearfix"></div>
 
@@ -34,4 +87,4 @@
 
 
 
-<?php include('C:\xampp\htdocs\food_delivery\Food_Order_Website_in_PHP\admin\partial\footer.php') ?>
+<?php include('/var/www/html/project/food_order/admin/partial/footer.php') ?>
