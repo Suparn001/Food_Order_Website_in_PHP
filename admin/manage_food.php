@@ -1,4 +1,4 @@
-<?php include('/var/www/html/project/food_order/admin/partial/header.php') ?>
+<?php include('C:\xampp\htdocs\food_delivery\Food_Order_Website_in_PHP\admin\partial\header.php') ?>
 
 <div class="main">
     <div class="wrapper">
@@ -34,4 +34,4 @@
 
 
 
-<?php include('/var/www/html/project/food_order/admin/partial/footer.php') ?>
+<?php include('C:\xampp\htdocs\food_delivery\Food_Order_Website_in_PHP\admin\partial\footer.php') ?>
