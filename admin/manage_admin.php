@@ -13,6 +13,7 @@
                     <th>Username</th>
                     <th>Update</th>
                     <th>Delete</th>
+                    <th>Update Password</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +32,8 @@
                             <td><?php echo $row['user_name'] ?></td>
                             <td><a href="update_admin.php?id= <?php echo $row['id'] ?>" class="btn btn-success">Update Admin</a></td>
                             <td><a href="delete_admin.php?id= <?php echo $row['id'] ?>" class="btn btn-danger">Delete Admin</a></td>
-
+                            <td><a href="update_password.php?id= <?php echo $row['id'] ?>" class="btn btn-danger">Update Password</a></td>
+                            
                         </tr>
                 <?php
                     }
@@ -95,6 +97,8 @@ if (isset($_GET['insert_message_2'])) {
 <?php
 // update the data from add admin form to database
 // check whether the submit button is clicked or not
+
+
 if (isset($_POST['add_admin'])) {
     // button clicked
     $fullName = $_POST['full_name'];
