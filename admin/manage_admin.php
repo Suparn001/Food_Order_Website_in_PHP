@@ -43,11 +43,24 @@
     </div>
     <div class="clearfix"></div>
 </div><br>
+
 <?php
-if (isset($_SESSION['add'])) {
-    echo "<div id='session-message'>{$_SESSION['add']}</div><br>";
-    unset($_SESSION['add']);
+if (isset($_GET['update_message'])) {
+    echo $_GET['update_message'];
 }
+if (isset($_GET['insert_message_1'])) {
+    echo $_GET['insert_message_1'];
+}
+if (isset($_GET['insert_message_2'])) {
+    echo $_GET['insert_message_2'];
+}
+// if (isset($_GET['mesg'])) {
+//     echo $_GET['mesg'];
+// }
+// if (isset($_GET['mesg'])) {
+//     echo $_GET['mesg'];
+// }
+
 ?>
 <form action="manage_admin.php" method="post">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,11 +104,11 @@ if (isset($_POST['add_admin'])) {
     $sql = "INSERT INTO `food_order`.`admin`(`full_name`,`user_name`,`password`) VALUES ('$fullName','$username','$password')";
     $result = mysqli_query($con, $sql);
     if ($result == true) {
-        header('location:manage_admin.php');
-        $_SESSION['add'] = "Admin Added Successfully";
+        header('location:manage_admin.php?insert_message_1=Admin added successfully');
+       // $_SESSION['add'] = "Admin Added Successfully";
     } else {
-        header('location:manage_admin.php');
-        echo "Something went wrong";
+        
+        header('location:manage_admin.php?insert_message_2=Something went Wrong!. Not added');
     }
 }
 ?>
